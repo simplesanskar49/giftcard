@@ -1,0 +1,37 @@
+<div class="container-fluid py-5">
+	<div class="w-100 h-100 d-flex align-items-center justify-content-center">
+		<div class="card px-3 py-3 col-12 col-lg-10">
+			<div class="card-title text-center">
+				<h2 class="py-3">Orders</h2>
+			</div>
+			<div class="card-body table-responsive">
+				<table class="table table-striped table-hover table-borderless">
+				<thead class="table-white">
+					<tr>
+					<th scope="col">OrderId</th>
+					<th scope="col">Recipient Name</th>
+					<th scope="col">Ordered Date</th>
+					<th scope="col">Gift Card Value</th>
+					<th scope="col">Commision (5%)</th>
+					<th scope="col">Delivery Status</th>
+					</tr>
+				</thead>
+				<tbody>
+				<% @orders.each do |order| %>
+				<% if order.user == current_user %>
+					<tr>
+					<th scope="row"><%= order.id %></th>
+					<td><%= order.first+" "+order.last%></td>
+					<td><%= order.created_at.strftime('%F') %></td>
+					<td><%= order.value %></td>
+					<td><%= order.commission %></td>
+					<td><%= order.delivery %></td>
+					</tr>
+					<% end %>
+					<% end %>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

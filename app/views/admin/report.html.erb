@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Gift Card Id</th>
+      <th scope="col">User [Placed Order]</th>
+      <th scope="col">Gift Card Value</th>
+      <th scope="col">Commision (5%)</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% Order.all.each do |order| %>
+    <tr>
+      <th scope="row"><%= order.id %></th>
+      <td><%= User.find(order.user_id).username %></td>
+      <td><%= order.value %></td>
+      <td><%= order.commission %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="mb-3">
+<h2>Total_Commision: <%=  Order.sum(:commission) %></h2>
+</div>

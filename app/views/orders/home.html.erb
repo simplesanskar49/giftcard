@@ -1,0 +1,50 @@
+<div class="container-fluid py-5">
+	<div class="w-100 h-100 d-flex align-items-center justify-content-center">
+		<div class="card px-5 py-3 col-sm-10 col-md-8 col-lg-6">
+			<div class="card-body">
+				<%= Time.now.strftime('%F')%>
+				<h1 class="mb-4">New Order</h1>
+				<%= form_for Order.new do |f| %>
+					<div class="mb-3">
+					<%= f.label :RecipientFirstName, class: "form-label" %>
+					<%= f.text_field :first, autofocus: true, class: "form-control" %>
+					</div>
+					<div class="mb-3">
+					<%= f.label :RecipientLastName, class: "form-label" %>
+					<%= f.text_field :last, autofocus: true, class: "form-control" %>
+					</div>
+
+					<div class="mb-3">
+					<%= f.label :GiftCardValue, class: "form-label" %>
+					<%= f.text_field :value, autofocus: true, class: "form-control", id: :val, onchange: "fun()" %>
+					</div>
+					<div class="mb-3">
+					<%= f.label :AmountPayable, class: "form-label" %>
+					<%= f.number_field :commission, step: :any, autofocus: true, class: "form-control", id: :res %>
+					</div>
+					<div class="mb-3">
+					<%= f.label :RecipientMobileNumber, class: "form-label" %>
+					<%= f.text_field :number, autofocus: true, class: "form-control"%>
+					</div>
+					<div class="mb-3">
+					<%= f.label :Address, class: "form-label" %>
+					<%= f.text_field :address, autofocus: true, class: "form-control" %>
+					</div>
+					<div class="mb-3">
+					<%= f.number_field :user_id, id: :order_user_id, class: "form-control", value: current_user.id, type: :hidden %>
+					</div>
+					<div class="mb-3">
+					<%= f.submit "Place Order", class: "btn btn-primary w-100 mt-3 py-2" %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+function fun() {
+  num = document.getElementById("val").value;
+  result = parseInt(num)*(0.05);
+  document.getElementById("res").value=result;
+}
+</script>

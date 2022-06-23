@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">OrderId</th>
+      <th scope="col">Recipient Name</th>
+      <th scope="col">Ordered Date</th>
+      <th scope="col">Gift Card Value</th>
+      <th scope="col">Commision (5%)</th>
+      <th scope="col">Delivery Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% Order.all.each do |order| %>
+    <tr>
+      <th scope="row"><%= order.id %></th>
+      <td><%= order.first+" "+order.last%></td>
+      <td><%= order.created_at.strftime('%F') %></td>
+      <td><%= order.value %></td>
+      <td><%= order.commission %></td>
+      <td><%= order.delivery %></td>
+      <td><a href="/orders/<%= order.id %>/edit" class="btn btn-success">Update Delivery Status</a></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

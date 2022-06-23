@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Update Order</h1>
+  <%= form_for :order do |f| %>
+    <div class="mb-3">
+      <%= f.label :Delivery_Status %>
+      <%= f.text_field :delivery, autofocus: true, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.submit "Update Order", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
